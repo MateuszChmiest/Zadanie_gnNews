@@ -3,10 +3,10 @@ import SideMenu from "../SideMenu/SideMenu";
 
 const MainContent = () => {
 	return (
-		<div className='w-full h-screen bg-primary'>
+		<div className='w-full '>
 			<div className='flex container'>
 				<SideMenu />
-				<div className=" w-2/3">MainContent</div>
+				<div className="">MainContent</div>
 			</div>
 		</div>
 	);

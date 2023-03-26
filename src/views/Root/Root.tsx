@@ -1,9 +1,11 @@
+import { Routes, Route } from 'react-router-dom';
 import HomePage from "../HomePage";
 
 const Root = () => (
-	<>  
-		<HomePage />
-	</>
+	<Routes>
+		<Route path='/' element={<HomePage />} />
+		<Route path='/country/:id' element={<HomePage />} />
+	</Routes>
 );
 
 export default Root;
