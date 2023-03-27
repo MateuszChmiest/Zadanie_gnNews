@@ -4,9 +4,9 @@ import Button from "../../elements/Button/Button";
 
 const Header = () => {
 	return (
-		<header className='flex justify-between items-center h-28 w-full bg-backgroundColor px-4'>
+		<header className='flex justify-between items-center h-28 w-full bg-backgroundColor px-4 shadow-[0_0_8px_1px_#575757]'>
 			<a href='/' className='text-secondary text-3xl md:text-4xl '>
-				<span className=' text-primary'>gn</span>News
+				<span className=' text-primary'>gn</span>News<span className="text-primary">.</span>
 			</a>
 			<div className='flex'>
 				<BsFillGridFill

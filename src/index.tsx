@@ -4,15 +4,23 @@ import "./index.css";
 import Root from "./views/Root/Root";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
+import {newsApi} from "./store/newsApi";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
 );
 root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Root />
-		</BrowserRouter>
+		<Provider store={store}>
+			<ApiProvider api={newsApi}>
+				<BrowserRouter>
+					<Root />
+				</BrowserRouter>
+			</ApiProvider>
+		</Provider>
 	</React.StrictMode>
 );
 

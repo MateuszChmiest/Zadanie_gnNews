@@ -4,10 +4,10 @@ import Country from "./Country";
 
 const SideMenu = () => {
 	return (
-		<div className=' w-60 border-r border-backgroundColor bg-secondary'>
-      <h3 className="text-center text-2xl font-bold ml-2 my-3">News from:</h3>
+		<div className='w-[250px]'>
+      <h3 className="text-2xl font-bold my-3">News from:</h3>
 			{countriesList.map((country) => (
-				<Country country={country} />
+				<Country country={country} key={country.short} />
 			))}
 		</div>
 	);
