@@ -1,24 +1,62 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import Popup from "../Popup/Popup";
 
 const News = ({ articles }: newsPropsType) => {
-    let list = false;
+	const [showPopup, setShowPopup] = useState(false);
+	const isMobile = useMediaQuery({ maxWidth: '767px'});
+	const [popupArticle, setPopupArticle] = useState({
+		title: "",
+		description: "",
+		url: "",
+		author: "",
+	});
+	let list = false;
+
+	useEffect(() => {
+		showPopup
+			? (document.body.style.overflow =  "hidden")
+			: (document.body.style.overflow = "auto");
+	},[showPopup]);
+
 	return (
-		<div className={clsx("grid grid-cols-2 gap-3 my-6 mx-4",{" grid-cols-none": list})}>
-			{articles.map((article) => (
-				<div className='flex flex-col justify-between p-4 w-full border-2 rounded-md border-secondary' key={article.title}>
-					<p className="text-primary">{article.source.name}</p>
-					<div className="flex my-2">
-						<h2 className="font-bold cursor-pointer">{article.title}</h2>
-						{article.urlToImage && (
-							<img className="w-24 h-16 ml-3 border-2 border-primary rounded-xl" src={article.urlToImage} alt='article img' />
-						)}
+		<>
+			{showPopup && (
+				<Popup article={popupArticle} setShowPopup={setShowPopup} />
+			)}
+			<div
+				className={clsx("grid grid-cols-2 gap-3 my-6 mx-4", {
+					" grid-cols-none": list || isMobile,
+				})}>
+				{articles.map((article) => (
+					<div
+						className='flex flex-col justify-between p-4 w-full border-2 rounded-md border-secondary cursor-pointer hover:bg-backgroundColor hover:text-whiteColor duration-300'
+						key={article.title} onClick={() => {
+							setShowPopup(true);
+							setPopupArticle(article);
+						}}>
+						<p className='text-primary text-xs md:text-base'>
+							{article.source.name}
+						</p>
+						<div className='flex justify-between my-2'>
+							<h2 className='font-bold'>{article.title}</h2>
+							{!list && article.urlToImage ? (
+								<img
+									className='w-24 h-16 ml-3 border-2 border-primary rounded-xl'
+									src={article.urlToImage}
+									alt='article img'
+								/>
+							) : null}
+						</div>
+						{!list && <p className='text-sm my-2'>{article.description}</p>}
+						<p className='text-primary font-bold text-right text-sm'>
+							{article.publishedAt.substring(10, 0)}
+						</p>
 					</div>
-                    <p className="my-2">{article.description}</p>
-                    <p className="text-backgroundColor">{article.publishedAt.substring(10, 0)}</p>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
+		</>
 	);
 };
 
