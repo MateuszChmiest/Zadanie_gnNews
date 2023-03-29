@@ -16,11 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<ApiProvider api={newsApi}>
 				<BrowserRouter>
 					<Root />
 				</BrowserRouter>
-			</ApiProvider>
 		</Provider>
 	</React.StrictMode>
 );

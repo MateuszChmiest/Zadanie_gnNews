@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useAppSelector } from "../../hooks";
+import { selectView } from "../../store/newsViewSlice";
 import Popup from "../Popup/Popup";
 
 const News = ({ articles }: newsPropsType) => {
@@ -12,7 +14,8 @@ const News = ({ articles }: newsPropsType) => {
 		url: "",
 		author: "",
 	});
-	let list = false;
+
+	const view = useAppSelector(selectView);
 
 	useEffect(() => {
 		showPopup
@@ -27,7 +30,7 @@ const News = ({ articles }: newsPropsType) => {
 			)}
 			<div
 				className={clsx("grid grid-cols-2 gap-3 my-6 mx-4", {
-					" grid-cols-none": list || isMobile,
+					" grid-cols-none": view || isMobile,
 				})}>
 				{articles.map((article) => (
 					<div
@@ -41,7 +44,7 @@ const News = ({ articles }: newsPropsType) => {
 						</p>
 						<div className='flex justify-between my-2'>
 							<h2 className='font-bold'>{article.title}</h2>
-							{!list && article.urlToImage ? (
+							{!view && article.urlToImage ? (
 								<img
 									className='w-24 h-16 ml-3 border-2 border-primary rounded-xl'
 									src={article.urlToImage}
@@ -49,7 +52,7 @@ const News = ({ articles }: newsPropsType) => {
 								/>
 							) : null}
 						</div>
-						{!list && <p className='text-sm my-2'>{article.description}</p>}
+						{!view && <p className='text-sm my-2'>{article.description}</p>}
 						<p className='text-primary font-bold text-right text-sm'>
 							{article.publishedAt.substring(10, 0)}
 						</p>

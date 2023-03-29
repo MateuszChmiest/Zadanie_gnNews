@@ -5,15 +5,28 @@ import Popup from "../Popup/Popup";
 import { useEffect, useState } from "react";
 import i18n from "../../i18next";
 import { useTranslation } from "react-i18next";
+import { changeNewsView, selectView } from "../../store/newsViewSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import clsx from "clsx";
 
 const Header = () => {
 	const [showPopup, setShowPopup] = useState(false);
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
+	const view = useAppSelector(selectView);
 
 	const handleChangeLang = (value: string) => {
 		i18n.changeLanguage(value);
 		localStorage.setItem("lang", value);
 	};
+
+	const handleChangeNewsToList = () => {
+		dispatch(changeNewsView(true));
+	}
+
+	const handleChangeNewsToBlock = () => {
+		dispatch(changeNewsView(false));
+	}
 
 	useEffect(() => {
 		showPopup
@@ -41,11 +54,13 @@ const Header = () => {
 				<div className='flex'>
 					<BsFillGridFill
 						size={25}
-						className='cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor'
+						className={clsx('cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor', {'!text-primary' : !view})}
+						onClick={() => handleChangeNewsToBlock()}
 					/>
 					<AiOutlineUnorderedList
 						size={25}
-						className='cursor-pointer hover:text-primary duration-200 text-whiteColor'
+						className={clsx('cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor', {'!text-primary' : view})}
+						onClick={() => handleChangeNewsToList()}
 					/>
 				</div>
 				<Button
