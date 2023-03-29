@@ -1,7 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { GrClose } from "react-icons/gr";
 
 const Popup = ({ setShowPopup, article }: popupPropsType) => {
-
+	const { t } = useTranslation();
 
 	return (
 		<>
@@ -50,7 +51,7 @@ const Popup = ({ setShowPopup, article }: popupPropsType) => {
 									href={article.url}
 									target='_blank'
 									rel='noreferrer'>
-									Go to article
+									{t('goArticle')}
 								</a>
 								<p className='text-secondary'>{article.author}</p>
 							</div>

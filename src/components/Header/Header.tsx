@@ -3,35 +3,57 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import Button from "../../elements/Button/Button";
 import Popup from "../Popup/Popup";
 import { useEffect, useState } from "react";
+import i18n from "../../i18next";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
 	const [showPopup, setShowPopup] = useState(false);
+	const { t } = useTranslation();
+
+	const handleChangeLang = (value: string) => {
+		i18n.changeLanguage(value);
+		localStorage.setItem("lang", value);
+	};
 
 	useEffect(() => {
 		showPopup
-			? (document.body.style.overflow =  "hidden")
+			? (document.body.style.overflow = "hidden")
 			: (document.body.style.overflow = "auto");
-	},[showPopup]);
-	
+	}, [showPopup]);
+
 	return (
 		<>
-		{showPopup && <Popup setShowPopup={setShowPopup}/>}
-		<header className='flex justify-between items-center h-28 w-full bg-backgroundColor px-4 shadow-[0_0_8px_1px_#575757]'>
-			<a href='/' className='text-secondary text-3xl md:text-4xl '>
-				<span className=' text-primary'>gn</span>News<span className="text-primary">.</span>
-			</a>
-			<div className='flex'>
-				<BsFillGridFill
-					size={25}
-					className='cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor'
+			{showPopup && <Popup setShowPopup={setShowPopup} />}
+			<header className='flex justify-between items-center h-28 w-full bg-backgroundColor px-4 shadow-[0_0_8px_1px_#575757] relative'>
+				<div className='flex absolute top-1 left-5 text-secondary'>
+					<p className='cursor-pointer hover:text-whiteColor duration-200' onClick={() => handleChangeLang("eng")}>
+						ENG
+					</p>
+					<span className='mx-1 text-primary'>|</span>
+					<p className='cursor-pointer hover:text-whiteColor duration-200' onClick={() => handleChangeLang("pl")}>
+						PL
+					</p>
+				</div>
+				<a href='/' className='text-secondary text-3xl md:text-4xl '>
+					<span className=' text-primary'>gn</span>News
+					<span className='text-primary'>.</span>
+				</a>
+				<div className='flex'>
+					<BsFillGridFill
+						size={25}
+						className='cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor'
+					/>
+					<AiOutlineUnorderedList
+						size={25}
+						className='cursor-pointer hover:text-primary duration-200 text-whiteColor'
+					/>
+				</div>
+				<Button
+					className='w-24 h-10'
+					text={t('more')}
+					onClick={() => setShowPopup(true)}
 				/>
-				<AiOutlineUnorderedList
-					size={25}
-					className='cursor-pointer hover:text-primary duration-200 text-whiteColor'
-				/>
-			</div>
-			<Button className='w-24 h-10' text='Modal' onClick={() => setShowPopup(true)} />
-		</header>
+			</header>
 		</>
 	);
 };
