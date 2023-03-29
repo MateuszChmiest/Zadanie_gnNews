@@ -1,4 +1,3 @@
-import React from "react";
 import { countriesList } from "../../data/countries";
 import Country from "./Country";
 
