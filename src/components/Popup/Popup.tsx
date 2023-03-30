@@ -17,8 +17,8 @@ const Popup = ({ setShowPopup, article }: popupPropsType) => {
 								Co sprawiło mi trudność?
 							</h2>
 							<p className='text-whiteColor my-3'>
-								Myślę, że tłumaczenie, ponieważ nie miałem wcześniej okazji w
-								moich projektach tego robić więc było to dla mnie coś nowego.
+								Myślę, że napisanie testów, ponieważ nie miałem wcześniej okazji w
+								moich projektach tego robić więc było to dla mnie coś nowego oraz brakło mi czasu na zagłębienie się w temat testów.
 							</p>
 
 							<h2 className='font-bold text-lg text-primary'>

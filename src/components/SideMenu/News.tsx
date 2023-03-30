@@ -43,7 +43,7 @@ const News = ({ articles }: newsPropsType) => {
 							{article.source.name}
 						</p>
 						<div className='flex justify-between my-2'>
-							<h2 className='font-bold'>{article.title}</h2>
+							<h2 className='font-bold text-sm lg:text-base'>{article.title}</h2>
 							{!view && article.urlToImage ? (
 								<img
 									className='w-24 h-16 ml-3 border-2 border-primary rounded-xl'
@@ -52,7 +52,7 @@ const News = ({ articles }: newsPropsType) => {
 								/>
 							) : null}
 						</div>
-						{!view && <p className='text-sm my-2'>{article.description}</p>}
+						{!view && <p className='text-xs lg:text-sm my-2'>{article.description}</p>}
 						<p className='text-primary font-bold text-right text-sm'>
 							{article.publishedAt.substring(10, 0)}
 						</p>

@@ -53,11 +53,13 @@ const Header = () => {
 				</a>
 				<div className='flex'>
 					<BsFillGridFill
+						data-testid="blockIcon"
 						size={25}
-						className={clsx('cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor', {'!text-primary' : !view})}
+						className={clsx('cursor-pointer mx-3 hover:text-secondary duration-200 text-whiteColor', {'!text-primary' : !view})}
 						onClick={() => handleChangeNewsToBlock()}
 					/>
 					<AiOutlineUnorderedList
+						data-testid="listIcon"
 						size={25}
 						className={clsx('cursor-pointer mx-3 hover:text-primary duration-200 text-whiteColor', {'!text-primary' : view})}
 						onClick={() => handleChangeNewsToList()}

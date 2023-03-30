@@ -6,8 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
-import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
-import {newsApi} from "./store/newsApiSlice";
 import './i18next';
 
 const root = ReactDOM.createRoot(
