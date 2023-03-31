@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import { GrClose } from "react-icons/gr";
 
@@ -52,7 +53,7 @@ const Popup = ({ setShowPopup, article }: popupPropsType) => {
 };
 
 interface popupPropsType {
-	setShowPopup: any;
+	setShowPopup: Dispatch<SetStateAction<boolean>>;
 	article?: {
 		title: string;
 		description: string;

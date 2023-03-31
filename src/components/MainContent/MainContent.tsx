@@ -10,11 +10,8 @@ import { useTranslation } from "react-i18next";
 const MainContent = () => {
 	const isDesktopOrTablet = useMediaQuery({ minWidth: "768px" });
 	const params = useParams();
-	let id = "us";
 
-	if (params.id) {
-		id = params.id;
-	}
+	let id = params.id ? params.id : "us";
 
 	const { data, isLoading, isError, isSuccess } = useGetAllNewsQuery(
 		id as string
